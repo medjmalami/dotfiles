@@ -8,9 +8,13 @@
 set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT 1
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -x SHELL "/usr/bin/env fish"
+set -x SHELL /usr/bin/fish
 
 set -x QT_QPA_PLATFORMTHEME qt5ct
+
+set -x HADOOP_HOME /opt/hadoop
+set -x PATH $PATH $HADOOP_HOME/bin $HADOOP_HOME/sbin
+
 
 if test "$DESKTOP_SESSION" = awesome
     set -x GDK_BACKEND x11
@@ -47,19 +51,18 @@ set -x GOPATH $XDG_DATA_HOME/go
 set -x GOBIN $GOPATH/bin
 
 # ━━ Default Apps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-set -x BROWSER firefox
+set -x BROWSER brave
 set -x FILEMANAGER thunar
-set -x EDITOR zed
-set -x TERMINAL kitty
+set -gx EDITOR "zed --wait"
+set -gx VISUAL "zed --wait"
+set -x TERMINAL alacritty
 set -x terminal $TERMINAL
-set -x VISUAL zed
+
 
 set WGPU_BACKEND gl
 set WARP_ENABLE_WAYLAND 1
 set wallpath $HOME/Pictures/good/
 
-# ━━ other env variables ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-source ~/.config/fish/env.fish
 
 #          ╭──────────────────────────────────────────────────────────╮
 #          │                           path                           │
@@ -129,7 +132,6 @@ end
 
 source ~/.config/fish/alias.fish
 source ~/.config/fish/binds.fish
-source ~/.config/fish/abbr.fish
 
 #          ╭──────────────────────────────────────────────────────────╮
 #          │                           init                           │
@@ -139,16 +141,16 @@ source ~/.config/fish/abbr.fish
 zoxide init fish | source
 
 if status --is-interactive
-    source ("starship" init fish --print-full-init | psub)
+    source ("/usr/bin/starship" init fish --print-full-init | psub)
     function starship_transient_prompt_func
       starship module character
     end
     enable_transience
 
-    if type -q pfetch
+    if test -x /usr/bin/pfetch
         pfetch
     else
-        if type -q neofetch
+        if test -x /usr/bin/neofetch
             neofetch --ascii_colors 6 6 2 2 2 2
         end
     end
@@ -156,3 +158,21 @@ end
 
 source ~/.config/fish/current_theme.fish
 fish_vi_key_bindings
+
+# opencode
+fish_add_path /home/amine/.opencode/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/amine/google-cloud-sdk/path.fish.inc' ]; . '/home/amine/google-cloud-sdk/path.fish.inc'; end
+set -Ux PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
+status is-interactive; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
+set -Ux PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
+status is-interactive; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
+set -Ux PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
+status is-interactive; and pyenv init --path | source
+status is-interactive; and pyenv init - | source

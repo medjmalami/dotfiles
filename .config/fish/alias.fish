@@ -1,49 +1,64 @@
 
 
 # ls > eza
-if type -q eza
-    alias ls 'eza -al --color=always --group-directories-first --icons' # preferred listing
-    alias la 'eza -a --color=always --group-directories-first --icons' # all files and dirs
-    alias ll 'eza -l --color=always --group-directories-first --icons' # long format
-    alias lt 'eza -aT --color=always --group-directories-first --icons' # tree listing
-    alias l. 'eza -ald --color=always --group-directories-first --icons .*' # show only dotfiles
+if test -x /usr/bin/eza
+    alias ls 'eza -al --color=always --group-directories-first --icons=auto' # preferred listing
+    alias la 'eza -a --color=always --group-directories-first --icons=auto' # all files and dirs
+    alias ll 'eza -l --color=always --group-directories-first --icons=auto' # long format
+    alias lt 'eza -aT --color=always --group-directories-first --icons=auto' # tree listing
+    alias l. 'eza -ald --color=always --group-directories-first --icons=auto .*' # show only dotfiles
 else
     echo "Eza does not exist on your system!"
 end
 
 # cat > bat
-if type -q bat
+if test -x /usr/bin/bat
     alias cat 'bat --style header --style snip --style changes --style header'
 else
     echo "Bat does not exist on your system!"
 end
 
-if type -q lazygit
+# yay > paru
+if not test -x /usr/bin/yay; and test -x /usr/bin/paru
+    alias yay paru
+end
+
+if test -x /usr/bin/lazygit
     alias lg lazygit
 end
-if type -q nvim
-    alias v nvim
+if test -x /usr/bin/nvim
+    alias v "nvim"
 end
-if type -q lvim
-    alias lv lvim
+
+if test -x /usr/bin/lazydocker
+    alias ldk "lazydocker"
 end
-if type -q wezterm
+if test -x /usr/bin/docker
+    alias dk "lazydocker"
+    alias dkc "docker-compose"
+end
+
+if test -x /usr/bin/wezterm
     alias wz wezterm
 end
 
-if type -q tmux
+if test -x /usr/bin/tmux
     alias t tmux
     alias tks 'tmux kill-session'
     alias tls 'tmux list-sessions'
-    alias tlc 'tmux list-clients'
+    alias tcs 'tmux list-clients'
     alias tns 'tmux new -s'
 end
 
 alias getip 'curl https://ipinfo.io/ip'
 
 alias rat bat
+alias cm chezmoi
+alias cme "chezmoi edit"
+alias cmtest "chezmoi git pull -- --autostash --rebase && chezmoi diff"
 alias c '/usr/bin/code --password-store="gnome"'
 alias ppc powerprofilesctl
+alias gclone $HOME/ghclone
 alias cq $HOME/code/scripts/cq.sh
 alias outdated 'paru -Qu| wc -l'
 
