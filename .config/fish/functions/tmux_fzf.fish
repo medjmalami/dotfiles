@@ -3,7 +3,7 @@ function tmux_fzf
     set prev (pwd)
     zi
     set name (basename (pwd))
-    if test "$name" != amine
+    if test "$name" != $USER
         if tmux has-session -t $name
             tmux attach -t $name
         else
