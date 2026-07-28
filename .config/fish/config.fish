@@ -51,7 +51,7 @@ set -x GOPATH $XDG_DATA_HOME/go
 set -x GOBIN $GOPATH/bin
 
 # ━━ Default Apps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-set -x BROWSER brave
+set -x BROWSER firefox
 set -x FILEMANAGER thunar
 set -gx EDITOR "zed --wait"
 set -gx VISUAL "zed --wait"
@@ -147,13 +147,14 @@ if status --is-interactive
     end
     enable_transience
 
-    if test -x /usr/bin/pfetch
-        pfetch
-    else
-        if test -x /usr/bin/neofetch
+    # Check for fastfetch first, then fall back to pfetch/neofetch if missing
+        if test -x /usr/bin/fastfetch
+            fastfetch
+        else if test -x /usr/bin/pfetch
+            pfetch
+        else if test -x /usr/bin/neofetch
             neofetch --ascii_colors 6 6 2 2 2 2
         end
-    end
 end
 
 source ~/.config/fish/current_theme.fish
