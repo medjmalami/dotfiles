@@ -1,0 +1,41 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-h": [
+        "workspace::ActivatePaneInDirection",
+        "Left"
+      ],
+      "alt-l": [
+        "workspace::ActivatePaneInDirection",
+        "Right"
+      ],
+      "alt-k": [
+        "workspace::ActivatePaneInDirection",
+        "Up"
+      ],
+      "alt-j": [
+        "workspace::ActivatePaneInDirection",
+        "Down"
+      ],
+      "ctrl-shift-5": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-1": [
+        "pane::ActivateItem",
+        0
+      ],
+      "alt-2": [
+        "pane::ActivateItem",
+        1
+      ],
+      "alt-3": [
+        "pane::ActivateItem",
+        2
+      ]
+    }
+  }
+]
