@@ -9,9 +9,9 @@ hypr=$cf/hypr
 themes_dir=$hypr/themes
 modules=$hypr/modules
 
-rofi=$modules/rofi
-alacritty=$modules/alacritty
-waybar=$modules/waybar
+rofi=$cf/rofi
+#alacritty=$modules/alacritty
+#waybar=$modules/waybar
 
 fish=$cf/fish
 mako=$cf/mako
@@ -72,7 +72,7 @@ set_hypr() {
 
 set_theme() {
 	set_swaync "$1"
-	set_alacritty "$1"
+#	set_alacritty "$1"
 	set_fish "$1"
 	set_mako "$1"
 	set_rofi "$1"
