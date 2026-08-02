@@ -4,7 +4,7 @@ local scripts = "~/scripts"
 local launch = "~/scripts/launch.fish"
 
 -- Source: $conf/defaults.conf — convert this file to Lua and ensure it is on Lua's package.path.
-require("_conf.defaults")
+require("conf.defaults")
 
 -- ── Apps ────────────────────────────────────────────────────────────
 hl.bind("SUPER + return", hl.dsp.exec_cmd("$terminal"))
@@ -45,7 +45,7 @@ hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
 --         ╰───────────────────────────────────────────────────────────╯
 
 -- ── Window ──────────────────────────────────────────────────────────
-hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "", action = "toggle" }))
+hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + CTRL + F", hl.dsp.window.center())
 hl.bind("SUPER + ALT + TAB", hl.dsp.layout("swapwithmaster master, "))
