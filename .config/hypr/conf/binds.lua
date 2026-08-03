@@ -4,14 +4,14 @@ local scripts = "~/scripts"
 local launch = "~/scripts/launch.fish"
 
 -- Source: $conf/defaults.conf — convert this file to Lua and ensure it is on Lua's package.path.
-require("conf.defaults")
+local D = require("conf.defaults")
 
 -- ── Apps ────────────────────────────────────────────────────────────
-hl.bind("SUPER + return", hl.dsp.exec_cmd("$terminal"))
-hl.bind("SUPER + CTRL + return", hl.dsp.exec_cmd("$terminal2"))
+hl.bind("SUPER + return", hl.dsp.exec_cmd(D.terminal))
+hl.bind("SUPER + CTRL + return", hl.dsp.exec_cmd(D.terminal2))
 hl.bind("SUPER + T", hl.dsp.exec_cmd(launch .. " tmux"))
-hl.bind("SUPER + b", hl.dsp.exec_cmd("[workspace 2 ] " .. launch .. " vivaldi"))
-hl.bind("SUPER + e", hl.dsp.exec_cmd("$files"))
+hl.bind("SUPER + b", hl.dsp.exec_cmd("[workspace 2 ] " .. launch .. " firefox"))
+hl.bind("SUPER + e", hl.dsp.exec_cmd(D.files))
 hl.bind("SUPER + R", hl.dsp.exec_cmd("fuzzel"))
 -- bind = SUPER,       D,      exec,         $dmenu
 -- bind = SUPER SHIFT, D,      exec,         makoctl dismiss -a
@@ -25,8 +25,8 @@ hl.bind("XF86Calculator", hl.dsp.exec_cmd("/usr/sbin/gnome-calculator"))
 -- bind = SUPER CTRL,  O,      exec,         $overview
 
 -- ── Utils ───────────────────────────────────────────────────────────
-hl.bind("SUPER + SHIFT + equal", hl.dsp.exec_cmd("$colorPicker"))
-hl.bind("SUPER + V", hl.dsp.exec_cmd("$clipboard"))
+hl.bind("SUPER + SHIFT + equal", hl.dsp.exec_cmd(D.colorPicker))
+hl.bind("SUPER + V", hl.dsp.exec_cmd(D.clipboard))
 hl.bind("print", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("CTRL + print", hl.dsp.exec_cmd("hyprshot -m region"))
 hl.bind("SHIFT + print", hl.dsp.exec_cmd("hyprshot -m window"))
@@ -151,18 +151,27 @@ hl.bind("SUPER + S", hl.dsp.focus({ monitor = "+1" }))
 -- bind = SUPER,       BracketLeft,  focusmonitor,                   +1
 hl.bind("SUPER + SHIFT + M",
     function()
-        local w = hl.get_active_workspace(); if not w then return end; hl.dispatch(hl.dsp.workspace.move({ workspace = w
-        .id, monitor = "+1" }))
+        local w = hl.get_active_workspace(); if not w then return end; hl.dispatch(hl.dsp.workspace.move({
+            workspace = w
+                .id,
+            monitor = "+1"
+        }))
     end)
 hl.bind("SUPER + SHIFT + BracketRight",
     function()
-        local w = hl.get_active_workspace(); if not w then return end; hl.dispatch(hl.dsp.workspace.move({ workspace = w
-        .id, monitor = -1 }))
+        local w = hl.get_active_workspace(); if not w then return end; hl.dispatch(hl.dsp.workspace.move({
+            workspace = w
+                .id,
+            monitor = -1
+        }))
     end)
 hl.bind("SUPER + SHIFT + BracketLeft",
     function()
-        local w = hl.get_active_workspace(); if not w then return end; hl.dispatch(hl.dsp.workspace.move({ workspace = w
-        .id, monitor = "+1" }))
+        local w = hl.get_active_workspace(); if not w then return end; hl.dispatch(hl.dsp.workspace.move({
+            workspace = w
+                .id,
+            monitor = "+1"
+        }))
     end)
 hl.bind("SUPER + CTRL + Tab", hl.dsp.workspace.swap_monitors({ monitor1 = "0", monitor2 = "1" }))
 
@@ -248,7 +257,7 @@ hl.define_submap("launch", function()
     hl.bind("a", hl.dsp.exec_cmd(launch .. " hypr_reset"), { repeating = true })
     hl.bind("a", hl.dsp.submap("reset"))
 
-    hl.bind("s", hl.dsp.exec_cmd("[workspace 5 silent] $spotify"), { repeating = true })
+    hl.bind("s", hl.dsp.exec_cmd("[workspace 5 silent] " .. D.spotify), { repeating = true })
     hl.bind("s", hl.dsp.exec_cmd(launch .. " hypr_reset"), { repeating = true })
     hl.bind("s", hl.dsp.submap("reset"))
 
@@ -264,7 +273,7 @@ hl.define_submap("launch", function()
     hl.bind("g", hl.dsp.exec_cmd(launch .. " hypr_reset"), { repeating = true })
     hl.bind("g", hl.dsp.submap("reset"))
 
-    hl.bind("h", hl.dsp.exec_cmd("$httpclient"), { repeating = true })
+    hl.bind("h", hl.dsp.exec_cmd(D.httpclient), { repeating = true })
     hl.bind("h", hl.dsp.exec_cmd(launch .. " hypr_reset"), { repeating = true })
     hl.bind("h", hl.dsp.submap("reset"))
 
@@ -276,7 +285,7 @@ hl.define_submap("launch", function()
     --binde=,        l,         exec,         $launch hypr_reset
     --binde=,        l,         submap,       reset
 
-    hl.bind("c", hl.dsp.exec_cmd("$code"), { repeating = true })
+    hl.bind("c", hl.dsp.exec_cmd(D.code), { repeating = true })
     hl.bind("c", hl.dsp.exec_cmd(launch .. " hypr_reset"), { repeating = true })
     hl.bind("c", hl.dsp.submap("reset"))
 
@@ -284,7 +293,7 @@ hl.define_submap("launch", function()
     hl.bind("b", hl.dsp.exec_cmd(launch .. " hypr_reset"), { repeating = true })
     hl.bind("b", hl.dsp.submap("reset"))
 
-    hl.bind("n", hl.dsp.exec_cmd("$neovide"), { repeating = true })
+    hl.bind("n", hl.dsp.exec_cmd(D.neovide), { repeating = true })
     hl.bind("n", hl.dsp.exec_cmd(launch .. " hypr_reset"), { repeating = true })
     hl.bind("n", hl.dsp.submap("reset"), { repeating = true })
 

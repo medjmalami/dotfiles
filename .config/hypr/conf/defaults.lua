@@ -28,3 +28,26 @@ local powermenu = "ags -t powermenu"
 local quicksettings = "ags -t quicksettings"
 local overview = "ags -t overview"
 local dashboard = "ags -t dashboard"
+
+
+return {
+    terminal = terminal,
+    terminal2 = terminal2,
+    editor = editor,
+    files = files,
+    code = code,
+    rofi = rofi,
+    dmenu = dmenu,
+    tmux = tmux,
+    nvim = nvim,
+    neovide = neovide,
+    filestui = filestui,
+    clipboard = clipboard,
+    spotify = spotify,
+    httpclient = httpclient,
+    colorPicker = colorPicker,
+    powermenu = powermenu,
+    quicksettings = quicksettings,
+    overview = overview,
+    dashboard = dashboard,
+}
