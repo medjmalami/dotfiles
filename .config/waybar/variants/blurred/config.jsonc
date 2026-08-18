@@ -34,6 +34,6 @@
       "format-alt": "{:%Y-%m-%d}",
       // "format": "{:%H:%M}",
       // i want format to be H:M day, nth of month
-      "format": "{:%H:%M}"
+      "format": "{:%I:%M %p}"
     }
   }
