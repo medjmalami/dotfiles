@@ -160,8 +160,6 @@ end
 source ~/.config/fish/current_theme.fish
 fish_vi_key_bindings
 
-# opencode
-fish_add_path /home/amine/.opencode/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/amine/google-cloud-sdk/path.fish.inc' ]; . '/home/amine/google-cloud-sdk/path.fish.inc'; end
