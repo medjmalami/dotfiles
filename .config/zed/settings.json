@@ -1,4 +1,15 @@
 {
+  "lsp": {
+      "pyright": {
+          "settings": {
+              "python": {
+                  "analysis": {
+                      "typeCheckingMode": "basic"
+                  }
+              }
+          }
+      }
+  },
   "edit_predictions": {
     "provider": "zed"
   },
@@ -30,7 +41,8 @@
   },
   "project_panel": {
     "dock": "left",
-    "auto_fold_dirs": false
+    "auto_fold_dirs": false,
+    "auto_reveal_entries": false
   },
   "code_actions_on_format": {
     "source.organizeImports.biome": true,
